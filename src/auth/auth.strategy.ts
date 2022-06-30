@@ -55,5 +55,5 @@ export const CheckJWT = async (server: Server) => {
     }
   }]);
 };
-
 export let role: string;
+

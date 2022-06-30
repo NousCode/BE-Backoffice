@@ -16,6 +16,7 @@ model Users {
   id                Int         @id @default(autoincrement())
   profilePicture    String?     @map("profile_picture")
   password          String
+  email             String
   interaction       Interactions[]
   role              Roles       @relation(fields: [roleId], references: [id])
   roleId            Int         @map("role_id")
@@ -76,7 +77,7 @@ model Titles {
 
   id                Int         @id @default(autoincrement())
   movie             Movies      @relation(fields: [movieId], references: [id])
-  movieId           Int         @map("movie_id")
+  movieId           Int         @unique @map("movie_id")
   title             String      @unique
   originalTitle     String      @unique @map("original_title")
   romajiTitle       String?     @unique @map("romaji_title")

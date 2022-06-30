@@ -3,7 +3,7 @@ import {
   ApolloServerPluginStopHapiServer,
 } from 'apollo-server-hapi';
 import { Server } from '@hapi/hapi';
-import { routes } from './app.routes';
+import { router } from './app.routes';
 import { typeDefs, resolvers } from './GraphQL/schema';
 import config from './Config/default';
 import { PrismaClient } from '@prisma/client';
@@ -33,7 +33,7 @@ export async function init() {
     csrfPrevention: true,
     plugins: [ApolloServerPluginStopHapiServer({ hapiServer: app })],
   });
-  routes(app);
+  router(app);
   //? Pino function
   await app.register({
     // eslint-disable-next-line @typescript-eslint/no-var-requires

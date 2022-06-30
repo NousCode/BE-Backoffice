@@ -13,7 +13,11 @@ export async function showAllUsers(
   unauthorizedSuperAdmin();
   let users: Array<Users>;
   try {
-    users = await context.orm.users.findMany();
+    users = await context.orm.users.findMany({
+      include: {
+        role: true
+      }
+    });
     return users;
   } catch (error) {
     errorHandler(error);

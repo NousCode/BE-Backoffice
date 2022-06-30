@@ -1,7 +1,10 @@
 import { Roles } from '@prisma/client';
 import { errorHandler } from '../../middleware';
 import { ResolverContext } from '../../utils/typeContext';
-import { unauthenticated, unauthorizedSuperAdmin } from '../../utils/authorization.error';
+import {
+  unauthenticated,
+  unauthorizedSuperAdmin,
+} from '../../utils/authorization.error';
 import { isRoles } from './utils/errors.roles';
 
 export async function showAllRoles(
@@ -13,7 +16,9 @@ export async function showAllRoles(
   unauthorizedSuperAdmin();
   let roles: Array<Roles>;
   try {
-    roles = await context.orm.roles.findMany();
+    roles = await context.orm.roles.findMany({
+      include: { users: true },
+    });
     return roles;
   } catch (error) {
     errorHandler(error);
@@ -33,4 +38,3 @@ export async function getARole(
   isRoles(role, arg);
   return role;
 }
-

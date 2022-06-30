@@ -3,6 +3,7 @@ CREATE TABLE `users` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `profile_picture` VARCHAR(191) NULL,
     `password` VARCHAR(191) NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
     `role_id` INTEGER NOT NULL,
     `joined_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NULL,
@@ -62,10 +63,10 @@ CREATE TABLE `titles` (
     `original_title` VARCHAR(191) NOT NULL,
     `romaji_title` VARCHAR(191) NULL,
 
+    UNIQUE INDEX `titles_movie_id_key`(`movie_id`),
     UNIQUE INDEX `titles_title_key`(`title`),
     UNIQUE INDEX `titles_original_title_key`(`original_title`),
     UNIQUE INDEX `titles_romaji_title_key`(`romaji_title`),
-    UNIQUE INDEX `titles_movie_id_key`(`movie_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

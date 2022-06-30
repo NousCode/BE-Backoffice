@@ -13,7 +13,7 @@ export async function createUser(
   },
   context: ResolverContext
 ): Promise<Users | undefined> {
-  const { nickname, password, profilePicture, status, roleId } = data;
+  const { nickname, password, profilePicture, status, email,roleId } = data;
 
   const hashPassword = await bcrypt.hash(password, 10);
   const user = await context.orm.users.findUnique({
@@ -26,6 +26,7 @@ export async function createUser(
       password: hashPassword,
       profilePicture,
       status,
+      email,
       role: {
         connect: {
           id: roleId,
@@ -48,7 +49,7 @@ export async function updateUser(
   context: ResolverContext
 ): Promise<Users | undefined> {
   unauthenticated();
-  const { nickname, profilePicture, status, roleId } = arg.data;
+  const { nickname, profilePicture, status, email,roleId } = arg.data;
   let user = await context.orm.users.findUnique({
     where: { id: parseInt(arg.id, 10) },
   });
@@ -64,6 +65,7 @@ export async function updateUser(
         nickname: nickname,
         profilePicture: profilePicture,
         status: status,
+        email: email,
         role: {
           connect: {
             id: roleId,
@@ -81,6 +83,7 @@ export async function updateUser(
       nickname: nickname,
       profilePicture: profilePicture,
       status: status,
+      email: email,
       role: {
         connect: {
           id: roleId,
@@ -119,10 +122,12 @@ export const resolver: Record<
   updatedAt: (parent) => parent.updatedAt,
   nickname: (parent) => parent.nickname,
   password: (parent) => parent.password,
+  email: (parent) => parent.email,
   profilePicture: (parent) => parent.profilePicture,
   status: (parent) => parent.status,
   roleId: (parent) => parent.role.id,
   role: (parent) => ({
+    id: parent.role.id,
     name: parent.role.name,
     status: parent.role.status,
   }),

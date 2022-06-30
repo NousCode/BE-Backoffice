@@ -1,9 +1,6 @@
 import {
-  Directors,
   Movies,
-  Musicians,
   Titles,
-  Writers,
 } from '@prisma/client';
 import { ResolverContext } from '../../utils/typeContext';
 import { unauthenticated, unauthorizedAdmin } from '../../utils/authorization.error';
@@ -29,7 +26,7 @@ export async function createAMovie(
     > &
       Titles;
   },
-  context: ResolverContext
+  context: ResolverContext,
 ): Promise<Movies> {
   unauthenticated();
   unauthorizedAdmin();

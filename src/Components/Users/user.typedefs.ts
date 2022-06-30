@@ -30,6 +30,7 @@ export const userTypeDefs = gql`
     nickname: String!
     profilePicture: String
     password: String!
+    email: String!
     role: Roles
     roleId: Int!
     interactions: [Interactions]
@@ -41,6 +42,7 @@ export const userTypeDefs = gql`
     password: String!
     profilePicture: String
     status: Status!
+    email: String!
     roleId: Int!
   }
 
@@ -48,6 +50,7 @@ export const userTypeDefs = gql`
     nickname: String
     profilePicture: String
     status: Status
+    email: String
     roleId: Int!
   }
 
