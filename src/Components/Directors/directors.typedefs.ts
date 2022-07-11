@@ -7,15 +7,23 @@ export const directorsTypeDefs = gql `
   type Directors {
     id: ID!
     name: String!
+    status: Status!
     movies: [Movies]
+  }
+
+  enum Status {
+    ACTIVE
+    INACTIVE
   }
 
   input DirectorInput {
     name: String!
+    status: Status
   }
 
   input DirecotrEditInput {
     name: String
+    status: Status
   }
 
   extend type Query {

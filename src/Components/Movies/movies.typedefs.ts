@@ -16,8 +16,7 @@ export const moviesTypeDefs = gql `
 
   enum Status {
     ACTIVE
-    SUSPENDED
-    BANNED
+    INACTIVE
   }
 
   type Movies implements BaseModel {

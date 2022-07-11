@@ -32,13 +32,24 @@ export async function updateWriter(
   unauthorizedAdmin();
   //* Validates if there is a writer.
   isWriters(writers, arg);
+  if (!arg.data.name) {
+    return await context.orm.writers.update({
+      where: { id: parseInt(arg.id, 10) },
+      data: {
+        status: arg.data.status
+      },
+    });
+  }
   writers = await context.orm.writers.findUnique({
     where: { name: arg.data.name },
   });
   existWriter(writers, arg.data.name);
   return await context.orm.writers.update({
     where: { id: parseInt(arg.id, 10) },
-    data: arg.data,
+    data: {
+      name: arg.data.name,
+      status: arg.data.status
+    },
   });
 }
 

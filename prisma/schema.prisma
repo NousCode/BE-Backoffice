@@ -88,6 +88,7 @@ model Directors {
 
   id                Int         @id @default(autoincrement())
   name              String      @unique
+  status            Status      @default(ACTIVE)
   movies            Movies[]
 }
 
@@ -96,6 +97,7 @@ model Musicians {
 
   id                Int         @id @default(autoincrement())
   name              String      @unique
+  status            Status      @default(ACTIVE)
   movies            Movies[]
 }
 
@@ -104,6 +106,7 @@ model Writers {
 
   id                Int         @id @default(autoincrement())
   name              String      @unique
+  status            Status      @default(ACTIVE)
   movies            Movies[]
 }
 
@@ -115,6 +118,5 @@ enum Role {
 
 enum Status {
   ACTIVE
-  SUSPENDED
-  BANNED
+  INACTIVE
 }

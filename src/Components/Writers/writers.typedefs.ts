@@ -8,14 +8,22 @@ export const writersTypeDefs = gql `
   type Writers {
     id: ID!
     name: String!
+    status: Status!
     movies: [Movies]
   }
 
+  enum Status {
+    ACTIVE
+    INACTIVE
+  }
+
   input WriterInput {
+    status: Status!
     name: String!
   }
 
   input WriterEditInput {
+    status: Status
     name: String
   }
 

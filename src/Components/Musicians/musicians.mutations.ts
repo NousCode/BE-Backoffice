@@ -31,13 +31,24 @@ export async function updateMusician(
     where: { id: parseInt(arg.id, 10) },
   });
   isMusicians(musician, arg);
+  if (!arg.data.name) {
+    return await context.orm.musicians.update({
+      where: { id: parseInt(arg.id, 10) },
+      data: {
+        status: arg.data.status
+      }
+    });
+  }
   musician = await context.orm.musicians.findUnique({
     where: { name: arg.data.name },
   });
   existMusicians(musician, arg.data.name);
   return await context.orm.musicians.update({
     where: { id: parseInt(arg.id, 10) },
-    data: arg.data,
+    data: {
+      name: arg.data.name,
+      status: arg.data.status
+    }
   });
 }
 

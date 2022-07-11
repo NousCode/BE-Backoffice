@@ -7,15 +7,23 @@ export const musiciansTypeDefs = gql `
   type Musicians {
     id: ID!
     name: String!
+    status: Status!
     movies: [Movies]
+  }
+
+  enum Status {
+    ACTIVE
+    INACTIVE
   }
 
   input MusicianInput {
     name: String!
+    status: Status!
   }
 
   input MusicianEditInput {
     name: String
+    status: Status
   }
 
   extend type Query {

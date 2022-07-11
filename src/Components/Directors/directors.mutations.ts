@@ -30,6 +30,14 @@ export async function updateDirector(
     where: { id: parseInt(arg.id, 10) },
   });
   isDirector(director, arg);
+  if (!arg.data.name) {
+    return context.orm.directors.update({
+      where: { id: parseInt(arg.id, 10) },
+      data: {
+        status: arg.data.status,
+      },
+    });
+  }
   director = await context.orm.directors.findUnique({
     where: { name: arg.data.name },
   });
@@ -37,7 +45,10 @@ export async function updateDirector(
 
   return context.orm.directors.update({
     where: { id: parseInt(arg.id, 10) },
-    data: arg.data,
+    data: {
+      name: arg.data.name,
+      status: arg.data.status
+    },
   });
 }
 
