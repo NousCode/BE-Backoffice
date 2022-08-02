@@ -19,7 +19,7 @@
 This is an expand of the project of [*Studio-Ghibli Movie Tracker*](https://github.com/C10-Ghibli-s/BE-Studio-Ghibli-Tracker/blob/main/README.md), it lets has roles in order to control the movie content, users, and even the admin users.  
 
 The project structure implements technologies like docker
-in order to mount image of mysql, hapi js framework of Node js, and GraphQL with helps from Apollo server for create the API. Finally, Deploy all the project in Digital Ocean.
+in order to mount images of mysql and phpMyAdmin, hapi js a Node js framework for the Back-End, and GraphQL with helps of Apollo server to create the API. Finally, all the deploy is on Digital Ocean.
 
 ## Table of Contents
 1. [Config Environment](#-config-environment)
